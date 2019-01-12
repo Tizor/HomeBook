@@ -1,0 +1,33 @@
+apply plugin: 'java'// Компилирует
+apply plugin: 'war' // Превращает скомпиленный, собранный jar архив в war архив, чтобы его на сервер можно было закинуть и запустить
+
+
+group 'Example4'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+ext { //временные переменные
+    springVersion = '5.0.5.RELEASE'
+    servletApiVersion = '3.0.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //вот тут либы которые скачает
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "javax.servlet:javax.servlet-api:$servletApiVersion"
+    providedCompile "javax.servlet:javax.servlet-api:$servletApiVersion"
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.3.RELEASE'
+    compile group: 'org.springframework', name: 'spring-beans', version: '5.1.3.RELEASE'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+    providedCompile 'org.apache.tomcat:tomcat-catalina:8.5.16'
+    compile group: 'javax.servlet.jsp.jstl', name: 'javax.servlet.jsp.jstl-api', version: '1.2.1'
+    providedCompile group: 'javax.servlet.jsp', name: 'jsp-api', version: '2.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
